@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
+    @Transactional
     @Override
     public Long createUser(UserDto userDto) {
         userDto.setUserId(UUID.randomUUID().toString());
@@ -37,6 +38,7 @@ public class UserServiceImpl implements UserService {
         return user.getId();
     }
 
+    @Transactional
     @Override
     public UserDto getUserByUserId(String userId) {
         User user = userRepository.findByUserId(userId).orElse(null);
